@@ -3,7 +3,7 @@ import { useFetchProducts } from '../hooks/useFetchProducts';
 import { useFetchCategories } from '../hooks/useFetchCategories';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
-import '../App.css';  
+ 
 
 const Home: React.FC = () => {
   const { data: products, isLoading: productsLoading } = useFetchProducts();
