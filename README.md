@@ -1,63 +1,69 @@
-# Advanced React E-Commerce Web App
+
+# 🛒 Advanced React E-Commerce Web App
 
 ## Description
 
-This project is an e-commerce web application built using React, Redux Toolkit, and React Query, which allows users to browse and manage products in a store, with an emphasis on a user-friendly experience for selecting categories, adding products to the cart, and managing their shopping cart state.
+A sleek, responsive e-commerce web app using **React**, **Redux Toolkit**, and **React Query**, powered by the [FakeStoreAPI](https://fakestoreapi.com/). Users can browse products, filter by category, manage their cart with session persistence, and simulate a checkout.
 
-## Features
+---
 
-- **Product Catalog**:
-  - **Product Listing and Display**: The Home component fetches product data using React Query from the FakeStoreAPI. It displays product details such as title, price, category, description, rating, and image. Each product includes a button for adding it to the shopping cart.
+## 🔧 Features
 
-- **Category Navigation**:
-  - A dropdown is dynamically populated with product categories fetched from the FakeStoreAPI. Users can filter products based on category selection, with React Query making API requests to fetch products of the selected category.
+### 🛍️ Product Catalog
+- Fetches all products using **React Query**
+- Displays title, price, category, description, rating, and image
+- Users can add items to the cart from the home page
 
-- **Shopping Cart**:
-  - **State Management**: Redux Toolkit is used to manage the shopping cart state, allowing for adding, updating, and removing products from the cart.
-  - **Cart Component**: Users can view the products added to their cart, including details like product title, image, count, and price. Each product has a button to remove it from the cart.
-  - **Persistence**: Shopping cart data is stored in sessionStorage, ensuring persistence across different browser sessions. The cart data is retrieved and updated as the user interacts with the application.
+### 🗂️ Category Navigation
+- Dynamically populates a dropdown from the FakeStoreAPI (not hard-coded)
+- Filters products by selected category in real-time
 
-- **Checkout**:
-  - A simulated checkout functionality is implemented where users can clear their cart after making a purchase. Redux state and sessionStorage are both cleared, and users receive feedback indicating the successful completion of the checkout process.
+### 🛒 Shopping Cart
+- Built with **Redux Toolkit**
+- View, add, update, and remove products from the cart
+- Displays product image, title, quantity, and total price
+- Persists cart in `sessionStorage`
 
-- **Real-Time Updates**:
-  - Total product count and total price in the shopping cart are dynamically updated as the user adds, removes, or updates products, providing real-time feedback and an accurate view of the shopping cart's contents.
+### 💳 Checkout Simulation
+- Clears Redux state and sessionStorage
+- Shows visual feedback on successful checkout
 
-### Technologies Used
+### 🔁 Real-Time Updates
+- Dynamically calculates and updates total items and total cost in cart
 
-- **React**
-- **TypeScript**
-- **Redux**
+---
+
+## 🧪 Tech Stack
+
+- **React** + **TypeScript**
+- **Redux Toolkit**
+- **React Query (TanStack)**
+- **Axios**
 - **CSS**
 
-#### Resources Used: :mag:
-- [Google Fonts](https://fonts.google.com/)
-- [Color Hunt](https://colorhunt.co/)
-- [YouTube](https://youtube.com)
-- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [GeeksforGeeks](https://www.geeksforgeeks.org/)
-- [ChatGPT](https://chat.openai.com)
+---
 
-## Getting Started
+## 📦 Getting Started
 
-1. **Clone the repository**:
-   
-bash
-   git clone https://github.com/brittmarie333/Advanced-React-E-Commerce-Web-App.git
-2. **Install dependencies**:
-    npm install
-3. **Run the Application**:
-    npm run dev
-
-
-## HomePage
-This is your landing page and you can easily use the drop down filter to locate the department you would like to browse. You can add items to your shopping cart directly from the home page. It's automatically loaded with all items, use the filter to organize your experience.
-
+```bash
+git clone https://github.com/brittmarie333/Advanced-React-E-Commerce-Web-App.git
+cd Advanced-React-E-Commerce-Web-App
+npm install
+npm run dev
 ```
+
+---
+
+## 🖥️ Components Overview
+
+### 🏠 Home Page
+
+Displays all products and category filter.
+
+```tsx
 const Home: React.FC = () => {
-  const { data: products, isLoading: productsLoading } = useFetchProducts();
-  const { data: categories, isLoading: categoriesLoading } = useFetchCategories();
+  const { data: products } = useFetchProducts();
+  const { data: categories } = useFetchCategories();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const dispatch = useDispatch();
 
@@ -73,11 +79,8 @@ const Home: React.FC = () => {
     ? products 
     : products?.filter(product => product.category === selectedCategory);
 
-  if (productsLoading || categoriesLoading) return <div>Loading...</div>;
-
   return (
     <div className="home">
-      {/* filter dropdown */}
       <select onChange={handleCategoryChange} className="category-select">
         <option value="all">Categories</option>
         {categories?.map(category => (
@@ -85,17 +88,14 @@ const Home: React.FC = () => {
         ))}
       </select>
 
-      {/* product list */}
       <div className="product-list">
         {filteredProducts?.map(product => (
           <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.title} className="product-image" />
+            <img src={product.image} alt={product.title} />
             <div className="product-details">
               <h3>{product.title}</h3>
-              <p className="product-price">${product.price}</p>
-              <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>
-                Add to Cart
-              </button>
+              <p>${product.price}</p>
+              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
             </div>
           </div>
         ))}
@@ -103,17 +103,11 @@ const Home: React.FC = () => {
     </div>
   );
 };
-
-export default Home;
-
-
 ```
 
+### 🛒 Shopping Cart Component
 
-## Shopping Cart
-You will find my items stored in sessionStorage waiting for checkout. Once checkout is complete, a modal will appear confirming checkout and, once closed your page will refresh and you can navigate back to home and continue shopping.
-
- ```
+```tsx
 const ShoppingCart: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
@@ -125,7 +119,7 @@ const ShoppingCart: React.FC = () => {
   const handleCheckout = () => {
     dispatch(clearCart());
     sessionStorage.removeItem('cart');
-    alert('Checkout successful! Your cart has been cleared.');
+    alert('Checkout successful!');
   };
 
   const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -134,23 +128,17 @@ const ShoppingCart: React.FC = () => {
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
-      <div className="cart-items">
-        {cart.map(item => (
-          <div key={item.id} className="cart-item">
-            <div className="item-details">
-              <img src={item.image} alt={item.title} className="product-image" />
-              <div>
-                <h3>{item.title}</h3>
-                <p>Quantity: {item.quantity}</p>
-              </div>
-            </div>
-            <div className="item-price">
-              <p>${(item.price * item.quantity).toFixed(2)}</p>
-              <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
-            </div>
+      {cart.map(item => (
+        <div key={item.id} className="cart-item">
+          <img src={item.image} alt={item.title} />
+          <div>
+            <h3>{item.title}</h3>
+            <p>Quantity: {item.quantity}</p>
+            <p>${(item.price * item.quantity).toFixed(2)}</p>
+            <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       <div className="cart-summary">
         <p>Total Products: {totalCount}</p>
         <p>Total Price: ${totalAmount.toFixed(2)}</p>
@@ -161,62 +149,18 @@ const ShoppingCart: React.FC = () => {
 };
 ```
 
-## Navbar
-A simple Navbar allows you to easily navigate between the Home page and Shopping Cart. The navbar also shrinks to a hamburger menu when viewed from mobile or smaller screens.
- 
-```
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+### 🔁 Redux Slice Snippet
 
-const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // toggle the menu on mobile
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  return (
-    <nav className="navbar">
-      <div className="navbar-brand">
-        <Link to="/" className="navbar-item">Fake Store</Link>
-      </div>
-      <div className={navbar-links ${isMenuOpen ? 'active' : ''}}>
-        <ul>
-          <li><Link to="/" className="navbar-item">Home</Link></li>
-          <li><Link to="/cart" className="navbar-item">Shopping Cart</Link></li>
-        </ul>
-      </div>
-      {/* Hamburger menu for mobile */}
-      <div className="hamburger" onClick={toggleMenu}>
-        <div className="line"></div>
-        <div className="line"></div>
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
-```
-
-## REDUX components: 
-This is where my redux store and cartSlice are held and a snippet of cartSlice below.
-```
+```ts
 interface CartItem {
   id: number;
   title: string;
   price: number;
-  category: string;
-  description: string;
-  image: string;
   quantity: number;
+  image: string;
 }
 
-interface CartState {
-  items: CartItem[];
-}
-
-const initialState: CartState = {
+const initialState = {
   items: JSON.parse(sessionStorage.getItem('cart') || '[]'),
 };
 
@@ -225,45 +169,60 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const product = action.payload;
-      const existingProduct = state.items.find(item => item.id === product.id);
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        state.items.push({ ...product, quantity: 1 });
-      }
+      const existing = state.items.find(i => i.id === action.payload.id);
+      if (existing) existing.quantity += 1;
+      else state.items.push({ ...action.payload, quantity: 1 });
       sessionStorage.setItem('cart', JSON.stringify(state.items));
     },
     removeFromCart: (state, action: PayloadAction<CartItem>) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id);
+      state.items = state.items.filter(i => i.id !== action.payload.id);
       sessionStorage.setItem('cart', JSON.stringify(state.items));
     },
+    clearCart: (state) => {
+      state.items = [];
+    },
+  },
+});
 ```
 
-## Hooks
-There are two different files in hooks for fetch categories and fetch products from the fake store api.
-```
-categories:
-// async function to fetch product categories
-const fetchCategories = async (): Promise<string[]> => {
-  const response = await axios.get<string[]>('https://fakestoreapi.com/products/categories');
-  return response.data; 
-};
+---
 
-// custom hook to fetch categories
-export const useFetchCategories = () => {
-  return useQuery<string[], Error>('categories', fetchCategories);
-};
+## ⚓ Hooks
 
-products: 
-// async function to fetch products
+```ts
+// useFetchProducts.ts
 const fetchProducts = async (): Promise<Product[]> => {
-  const response = await axios.get<Product[]>('https://fakestoreapi.com/products');
-  return response.data; 
+  const res = await axios.get('https://fakestoreapi.com/products');
+  return res.data;
 };
 
-// custom hook to fetch products
 export const useFetchProducts = () => {
-  return useQuery<Product[], Error>('products', fetchProducts);
+  return useQuery('products', fetchProducts);
+};
+
+// useFetchCategories.ts
+const fetchCategories = async (): Promise<string[]> => {
+  const res = await axios.get('https://fakestoreapi.com/products/categories');
+  return res.data;
+};
+
+export const useFetchCategories = () => {
+  return useQuery('categories', fetchCategories);
 };
 ```
+
+---
+
+## 🌐 Useful Resources
+
+- [TanStack Query Docs](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [Google Fonts](https://fonts.google.com/)
+- [Color Hunt](https://colorhunt.co/)
+- [YouTube](https://youtube.com)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/)
+- [ChatGPT](https://chat.openai.com/)
+
+
+
+
