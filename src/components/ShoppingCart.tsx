@@ -17,6 +17,12 @@ const ShoppingCart: React.FC = () => {
     alert('Checkout successful! Your cart has been cleared.');
   };
 
+  const handleClearCart = () => {
+    dispatch(clearCart());
+    sessionStorage.removeItem('cart');
+    alert('All items have been removed from your cart!');
+  };
+
   const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -44,6 +50,7 @@ const ShoppingCart: React.FC = () => {
         <p>Total Products: {totalCount}</p>
         <p>Total Price: ${totalAmount.toFixed(2)}</p>
         <button onClick={handleCheckout}>Checkout</button>
+        <button className="clear-cart-btn" onClick={handleClearCart}>Clear Cart</button>
       </div>
     </div>
   );

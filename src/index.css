@@ -1,7 +1,7 @@
 /* Global background */
 body {
-    background-color: #F5E8DD; 
-    color: #945034; 
+    background-color: #F5E8DD;
+    color: #945034;
     line-height: 1.6;
     text-align: center;
   }
@@ -23,7 +23,7 @@ body {
   
   /* Navbar brand */
   .navbar-brand .navbar-item {
-    color: #22110a !important; 
+    color: #22110a !important;
     font-size: 24px;
     text-decoration: none;
     font-weight: bold;
@@ -79,7 +79,7 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #CCD3CA !important; 
+      background-color: #CCD3CA !important;
       position: absolute;
       top: 60px;
       left: 0;
@@ -92,7 +92,6 @@ body {
       display: flex;
       margin: 0;
       padding: 0;
-
     }
   
     .navbar-links li {
@@ -122,28 +121,28 @@ body {
     padding: 0;
     margin: 0;
   }
-
-  /* create space so dropdown is visible*/
+  
+  /* create space so dropdown is visible */
   .home {
     padding-top: 80px;
   }
-
-    /* dropdown container */
-    .dropdown-container {
-        margin-bottom: 20px;
-        text-align: center;
-      }
-      
-      /*  dropdown styling */
-      .category-select {
-        padding: 10px;
-        font-size: 1rem;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-        color: #945034;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
+  
+  /* dropdown container */
+  .dropdown-container {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* dropdown styling */
+  .category-select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #945034;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   
   /* Layout for product list in rows */
   .product-list {
@@ -154,13 +153,12 @@ body {
     gap: 20px;
     margin: auto;
     padding-top: 80px;
-    padding-right: 150px;
-    /* Add padding equal to the height of your navbar */
+    padding-right: 150px; /* Add padding equal to the height of your navbar */
   }
   
   /* Product card */
   .product-card {
-    border: 1px solid #D9D9D9; 
+    border: 1px solid #D9D9D9;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -169,7 +167,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #EED3D9; 
+    background-color: #EED3D9;
     margin-top: 20px;
   }
   
@@ -197,7 +195,7 @@ body {
   
   /* Add to Cart Button */
   .add-to-cart-btn {
-    background-color: #EED3D9;
+    background-color: #5a1c2a;
     border: none;
     color: white;
     padding: 10px;
@@ -208,7 +206,7 @@ body {
   }
   
   .add-to-cart-btn:hover {
-    background-color: #EED3D9;
+    background-color: #e09dac;
   }
   
   /* Shopping cart */
@@ -273,14 +271,40 @@ body {
   }
   
   .cart-summary button {
-    background-color: #EED3D9; 
+    background-color: #EED3D9;
     font-size: 1.1em;
   }
   
   .cart-summary button:hover {
-    background-color: #EED3D9;
+    background-color: #e09dac;
   }
-
+  
+  /* Modal Styling */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal.active {
+    display: flex;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+  }
   
 
+  
   
