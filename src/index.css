@@ -122,6 +122,28 @@ body {
     padding: 0;
     margin: 0;
   }
+
+  /* create space so dropdown is visible*/
+  .home {
+    padding-top: 80px;
+  }
+
+    /* dropdown container */
+    .dropdown-container {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      /*  dropdown styling */
+      .category-select {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #945034;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
   
   /* Layout for product list in rows */
   .product-list {
@@ -258,4 +280,7 @@ body {
   .cart-summary button:hover {
     background-color: #EED3D9;
   }
+
+  
+
   

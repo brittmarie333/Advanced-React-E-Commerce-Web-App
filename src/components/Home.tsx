@@ -3,7 +3,6 @@ import { useFetchProducts } from '../hooks/useFetchProducts';
 import { useFetchCategories } from '../hooks/useFetchCategories';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
- 
 
 const Home: React.FC = () => {
   const { data: products, isLoading: productsLoading } = useFetchProducts();
@@ -17,25 +16,27 @@ const Home: React.FC = () => {
 
   const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
-  }
+  };
 
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
+  const filteredProducts = selectedCategory === 'all'
+    ? products
     : products?.filter(product => product.category === selectedCategory);
 
   if (productsLoading || categoriesLoading) return <div>Loading...</div>;
 
   return (
     <div className="home">
-      {/* filter dropdown */}
-      <select onChange={handleCategoryChange} className="category-select">
-        <option value="all">Categories</option>
-        {categories?.map(category => (
-          <option key={category} value={category}>{category}</option>
-        ))}
-      </select>
+      {/* Filter Dropdown */}
+      <div className="dropdown-container">
+        <select onChange={handleCategoryChange} className="category-select">
+          <option value="all">All Categories</option>
+          {categories?.map(category => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+      </div>
 
-      {/* product list */}
+      {/* Product List */}
       <div className="product-list">
         {filteredProducts?.map(product => (
           <div key={product.id} className="product-card">
