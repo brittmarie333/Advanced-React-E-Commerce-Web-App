@@ -47,7 +47,7 @@ A sleek, responsive e-commerce web app using **React**, **Redux Toolkit**, and *
 
 ```bash
 git clone https://github.com/brittmarie333/Advanced-React-E-Commerce-Web-App.git
-cd Advanced-React-E-Commerce-Web-App
+cd fake-store
 npm install
 npm run dev
 ```
