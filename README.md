@@ -222,7 +222,4 @@ export const useFetchCategories = () => {
 - [YouTube](https://youtube.com)
 - [GeeksforGeeks](https://www.geeksforgeeks.org/)
 - [ChatGPT](https://chat.openai.com/)
-
-
-
-
+- [vercel link](https://advanced-react-e-commerce-web-app-49m8.vercel.app/)
