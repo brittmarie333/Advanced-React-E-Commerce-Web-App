@@ -238,11 +238,8 @@ A full-featured e-commerce web app built with React, Redux, Firebase, and TypeSc
 
 ## 📦 Features
 
-- 🔥 Firebase Authentication (Sign Up, Login, Logout)
-- 🛍️ Firestore for Product & Order CRUD operations
 - 💾 Redux for global state management
 - 👤 User Profile Management
-- 🔐 Protected Routes
 - 📱 Fully Responsive Design
 - ✅ CI/CD Pipeline with GitHub Actions
 - 🧪 Unit & Integration Testing (Test-Driven Development)
@@ -306,7 +303,7 @@ npm test
 ## 🛠️ Tech Stack
 
 - **Frontend**: React, TypeScript, Redux Toolkit
-- **Backend**: Firebase Authentication, Firestore
+- **Backend**: Context API
 - **CI/CD**: GitHub Actions + Vercel
 - **Testing**: Jest, React Testing Library
 - **Styling**: CSS / Responsive Design
@@ -327,9 +324,8 @@ npm start
 ## 🌐 Deployment Guide
 
 1. Create a new project on Vercel
-2. Set required Firebase ENV variables
-3. Connect your GitHub repo
-4. Add secrets to GitHub repo:
+2. Connect your GitHub repo
+3. Add secrets to GitHub repo:
    - `VERCEL_TOKEN`
    - `VERCEL_ORG_ID`
    - `VERCEL_PROJECT_ID`
