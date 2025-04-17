@@ -222,3 +222,121 @@ export const useFetchCategories = () => {
 - [YouTube](https://youtube.com)
 - [GeeksforGeeks](https://www.geeksforgeeks.org/)
 - [ChatGPT](https://chat.openai.com/)
+
+---
+
+## 🎓 Final Project Features & Updates
+##  Advanced React E-Commerce Web App (FINAL PROJECT VERSION)
+
+A full-featured e-commerce web app built with React, Redux, Firebase, and TypeScript — complete with user authentication, Firestore-based product and order management, protected routes, and responsive design. Now with full CI/CD pipeline integration and automated deployment to Vercel.
+
+## 🚀 Live Demo
+
+🔗 [View Live Site on Vercel](https://advanced-react-e-commerce-web-app-49m8.vercel.app/)
+
+---
+
+## 📦 Features
+
+- 🔥 Firebase Authentication (Sign Up, Login, Logout)
+- 🛍️ Firestore for Product & Order CRUD operations
+- 💾 Redux for global state management
+- 👤 User Profile Management
+- 🔐 Protected Routes
+- 📱 Fully Responsive Design
+- ✅ CI/CD Pipeline with GitHub Actions
+- 🧪 Unit & Integration Testing (Test-Driven Development)
+
+---
+
+## ✅ Requirement Checklist (For Presentation)
+
+### ✔️ CI/CD Pipeline (GitHub Actions + Vercel)
+- [x] Workflow triggers on `main` branch push/pull
+- [x] Runs tests via Jest on every push
+- [x] Deployment **only** happens after tests pass
+- [x] Uses secure secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+
+### ✔️ Test-Driven Development (TDD)
+- [x] At least **two unit tests** for separate components (e.g., rendering, interaction)
+- [x] One **integration test**: adding a product updates the cart
+
+### ✔️ Deployment & Hosting
+- [x] Automatically deployed and hosted via [Vercel](https://vercel.com/)
+- [x] Final app is accessible to the public
+
+---
+
+## 🔁 CI/CD Pipeline Details
+
+### Continuous Integration (CI)
+- **Tools**: GitHub Actions + Jest
+- **Steps**: 
+  - Install dependencies
+  - Run tests
+  - Block deployment if any test fails
+
+### Continuous Deployment (CD)
+- **Tool**: Vercel
+- **Trigger**: Only after successful CI
+- **Secrets**:
+  - `VERCEL_TOKEN`
+  - `VERCEL_ORG_ID`
+  - `VERCEL_PROJECT_ID`
+
+GitHub Actions Workflow: `.github/workflows/main.yml`
+
+---
+
+## 🧪 Testing Summary
+
+### Unit Tests
+- ✅ Separate components tested using Jest + RTL
+- ✅ Verifies rendering, state changes, interaction
+
+### Integration Test
+- ✅ Adding product to cart updates cart display and state
+
+```bash
+npm test
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, TypeScript, Redux Toolkit
+- **Backend**: Firebase Authentication, Firestore
+- **CI/CD**: GitHub Actions + Vercel
+- **Testing**: Jest, React Testing Library
+- **Styling**: CSS / Responsive Design
+
+---
+
+## 📂 Getting Started
+
+```bash
+git clone https://github.com/brittmarie333/Advanced-React-E-Commerce-Web-App.git
+cd Advanced-React-E-Commerce-Web-App
+npm install
+npm start
+```
+
+---
+
+## 🌐 Deployment Guide
+
+1. Create a new project on Vercel
+2. Set required Firebase ENV variables
+3. Connect your GitHub repo
+4. Add secrets to GitHub repo:
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+
+---
+
+## 🧠 Author
+
+Developed by [Brittany Pitts](https://github.com/brittmarie333)  
+Final project for Frontend Specialization!

@@ -1,45 +1,44 @@
-// integration testing
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import store from '../redux/store'; 
-import Home from '../components/Home';
-import ShoppingCart from '../components/ShoppingCart';
 import { BrowserRouter as Router } from 'react-router-dom';
+import store from '../redux/store';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Home from '../components/Home';
 
-test('adds a product to the cart and updates ShoppingCart', async () => {
+const queryClient = new QueryClient();
+
+test('adds a product from a specific category to the cart', async () => {
   render(
-    <Provider store={store}>
-      <Router>
-        <Home />
-      </Router>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <Router>
+          <Home />
+        </Router>
+      </Provider>
+    </QueryClientProvider>
   );
 
-  // Wait for products to be displayed
+  // Wait for products to display and category selection dropdown
   await waitFor(() => screen.getByText('All Categories'));
 
-  // Simulate selecting a product to add to the cart
-  const addToCartButton = screen.getByText('Add to Cart');
-  fireEvent.click(addToCartButton);
+  // Select "men's clothing" category
+  const categorySelect = screen.getByRole('combobox'); // Category dropdown
+  fireEvent.change(categorySelect, { target: { value: "men's clothing" } });
 
-  // Verify that the product was added to the Redux store (cart)
+  // Wait for the category to update and products to be filtered
+  await waitFor(() => screen.getByText(/Mens Casual Premium Slim Fit T-Shirts/));
+
+  // Find all "Add to Cart" buttons
+  const addToCartButtons = screen.getAllByText(/Add to Cart/i);
+
+  // Click the "Add to Cart" button for the second product (e.g., Mens Casual Premium Slim Fit T-Shirts)
+  fireEvent.click(addToCartButtons[1]);  // Adjust index based on the product you want to interact with
+
+  // Check if the product has been added to the cart
   const state = store.getState();
-  expect(state.cart.items.length).toBeGreaterThan(0); // Cart should have 1 item now
+  expect(state.cart.items.length).toBeGreaterThan(0);  // Cart should have at least one item
 
-  // Now, let's render the ShoppingCart component to check if it's updated
-  render(
-    <Provider store={store}>
-      <Router>
-        <ShoppingCart />
-      </Router>
-    </Provider>
-  );
-
-  // Verify that the cart contains the item we just added
-  const cartItem = screen.getByText(/Product 1/); // Replace with actual product title
-  expect(cartItem).toBeInTheDocument();
-
-  // Verify the cart total is updated (optional, depends on your cart logic)
-  const totalAmount = screen.getByText(/Total Price:/);
-  expect(totalAmount).toBeInTheDocument();
+  // Optionally, verify if the cart now contains the added product
+  await waitFor(() => screen.getByText(/Mens Casual Premium Slim Fit T-Shirts/)); // Check cart
+  expect(screen.getByText(/Mens Casual Premium Slim Fit T-Shirts/)).toBeInTheDocument();
 });

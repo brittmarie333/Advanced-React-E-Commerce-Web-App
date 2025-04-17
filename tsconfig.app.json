@@ -5,23 +5,18 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "moduleResolution": "node",   // Use 'node' resolution for modules
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "types": ["jest", "node"],   // Add Jest types
-    "esModuleInterop": true,      // Allow imports to work with CommonJS modules
-    "resolveJsonModule": true,    // Enable import of JSON files
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,               // Prevent emitting files (useful for testing)
-    "moduleDetection": "force",
-    "allowImportingTsExtensions": true
+    "noEmit": true,
+    "moduleDetection": "force"
   },
-  "include": [
-    "src/**/*",
-    "src/setupTests.ts"   // Ensure setupTests is included for Jest-DOM setup
-  ]
+  "include": ["src/**/*", "src/setupTests.ts"]
 }

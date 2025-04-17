@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
       {/* Hamburger menu for mobile */}
-      <div className="hamburger" onClick={toggleMenu}>
+      <div className="hamburger" onClick={toggleMenu} role="button" aria-label="Toggle menu">
         <div className="line"></div>
         <div className="line"></div>
       </div>

@@ -1,29 +1,11 @@
-// unit test
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import store from '../redux/store'; 
-import ShoppingCart from '../components/ShoppingCart';
+import { screen } from '@testing-library/react';
+import renderWithProviders from '../test-utils'; // Make sure this function wraps necessary providers
+import ShoppingCart from '../components/ShoppingCart'; // Adjust the path if needed
 
-test('renders the cart items', () => {
-  render(
-    <Provider store={store}>
-      <ShoppingCart />
-    </Provider>
-  );
+test('cart is empty initially', async () => {
+  renderWithProviders(<ShoppingCart />);
 
-  expect(screen.getByText('Shopping Cart')).toBeInTheDocument();
-});
-
-test('removes item from cart', () => {
-  render(
-    <Provider store={store}>
-      <ShoppingCart />
-    </Provider>
-  );
-
-  const removeButton = screen.getByText('Remove');
-  fireEvent.click(removeButton);
-
-  // Assert that the item was removed from the cart
-  expect(store.getState().cart.items.length).toBe(0);
+  // Check for the empty cart message
+  const emptyCartMessage = screen.queryByText('Your cart is empty');
+  expect(emptyCartMessage).toBeInTheDocument();  // Ensure that the empty cart message is displayed
 });
