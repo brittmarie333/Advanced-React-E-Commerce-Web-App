@@ -228,7 +228,7 @@ export const useFetchCategories = () => {
 ## 🎓 Final Project Features & Updates
 ##  Advanced React E-Commerce Web App (FINAL PROJECT VERSION)
 
-A full-featured e-commerce web app built with React, Redux, Firebase, and TypeScript — complete with user authentication, Firestore-based product and order management, protected routes, and responsive design. Now with full CI/CD pipeline integration and automated deployment to Vercel.
+A full-featured e-commerce web app built with React, Redux, and TypeScript — Now with full CI/CD pipeline integration and automated deployment to Vercel.
 
 ## 🚀 Live Demo
 
